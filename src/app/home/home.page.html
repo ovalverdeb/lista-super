@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Lista de Compras
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,25 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Lista de Compras</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <strong>Lista de Compras</strong>
+    
+    <!-- Lista de ítems -->
+    <ion-list>
+      <ion-item *ngFor="let item of shoppingList" (click)="toggleItem(item)">
+        <ion-label>{{ item.name }}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="item.checked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <!-- Formulario para agregar nuevos ítems -->
+    <ion-item>
+      <ion-input placeholder="Nuevo ítem" [(ngModel)]="newItem"></ion-input>
+      <ion-button expand="full" (click)="addItem()">Agregar</ion-button>
+    </ion-item>
   </div>
 </ion-content>
